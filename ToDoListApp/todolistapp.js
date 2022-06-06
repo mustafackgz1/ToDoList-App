@@ -9,7 +9,7 @@ let isEditedTask = false;
 let todos = JSON.parse(localStorage.getItem("todo-list"));//getting LS todo-list
 
 
-filters.forEach(btn =>{ //filters altındaki spanlar arası geçiş
+filters.forEach(btn =>{ //transition between spans those under filters
     btn.addEventListener("click", () =>{
         document.querySelector("span.active").classList.remove("active")
         btn.classList.add("active")
@@ -23,7 +23,7 @@ function showToDo(filter) {
     if(todos){
         todos.forEach((todo, id) =>{
             let isCompleted = todo.status == "completed" ? "checked" : "" ;
-            if(filter == todo.status || filter == "all"){ //kategorilere göre ayrıştırdık
+            if(filter == todo.status || filter == "all"){ //sorted by categories
                 li += `<li class="task">
                         <label for="${id}">
                             <input onclick=updateStatus(this) type="checkbox" id="${id}" ${isCompleted}>
@@ -48,7 +48,7 @@ function showMenu(selectedTask){
     let taskMenu = selectedTask.parentElement.lastElementChild;
     taskMenu.classList.add("show")
     document.addEventListener("click", e =>{
-        if(e.target.tagName != "I" || e.target != selectedTask){ //3 noktaya tıkladığımızda geri kapatan kod
+        if(e.target.tagName != "I" || e.target != selectedTask){ //this code closes it back when we hit 3 dots.
             taskMenu.classList.remove("show");
         }
     });
